@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-#change permission on file
-#sudo chown ubuntu:group <filename>
-#chmod 700 <filename>
-#run sudo ./<filename> 
+# change permission on file
+# sudo chown ubuntu:group <filename>
+# chmod 700 <filename>
+# run sudo ./<filename> 
 
 # Install updates
 apt update
@@ -21,5 +21,5 @@ apt install jenkins
 # sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 # Finally visit the dns with port 8080 on your browser
 
-#Install Tidy
+# Install Tidy
 apt-get install -y tidy
