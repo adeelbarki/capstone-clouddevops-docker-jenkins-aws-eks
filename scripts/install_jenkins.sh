@@ -5,7 +5,7 @@
 #chmod 700 <filename>
 #run sudo ./<filename> 
 
-Install updates
+# Install updates
 apt update
 apt upgrade
 apt install default-jdk
