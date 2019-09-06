@@ -31,3 +31,7 @@ apt update
 # Install the latest version of Docker CE
 apt-get install docker-ce
 
+# Give permission to user
+# sudo usermod -a -G docker $USER
+sudo usermod -a -G docker jenkins
+
