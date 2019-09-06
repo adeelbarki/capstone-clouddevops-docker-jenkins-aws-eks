@@ -17,6 +17,12 @@ pipeline {
             }
         }
 
+        stage('Clone repository') {
+        /* Cloning the Repository to our Workspace */
+
+        checkout scm
+        }
+
         stage('Build docker image') {
             app = docker.build("adeelbarki/capstone-clouddevops")
         }
