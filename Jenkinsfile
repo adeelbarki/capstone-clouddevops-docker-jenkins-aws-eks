@@ -1,26 +1,30 @@
 pipeline {
-  agent any
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
-  triggers {
-    cron('@daily')
-  }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'docker build -t adeelbarki/capstone-clouddevops .'
-      }
+    environment {
+    registry = "adeelbarki/capstone-clouddevops"
+    registryCredential = 'docker-hub'
     }
-    stage('Publish') {
-      when {
-        branch 'master'
-      }
-      steps {
-        withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
-          sh 'docker push adeelbarki/capstone-clouddevops'
+    
+    agent any
+    stages {
+        
+        stage ('Lint HTML') {
+            steps {
+                sh 'tidy -q -e *.html'
+            }
         }
-      }
+        
+        stage ('Upload to AWS') {
+            steps {
+               withAWS(region: 'eu-central-1', credentials: 'aws-static') {
+               s3Upload(file: 'index.html', bucket: 'udacity-jenkins-adeelbarki')
+                }
+            }
+        }
+
+        stage ('Cloning Git') {
+            steps {
+                git 'https://github.com/adeelbarki/capstone-clouddevops-docker-jenkins-aws-eks.git'
+            }
+        }
     }
-  }
 }
