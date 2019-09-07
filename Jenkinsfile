@@ -30,7 +30,7 @@ pipeline {
         stage('Building image') {
             steps {
                 script {
-                    sh 'sudo docker build --tag=adeelbarki/capstone-clouddevops .'
+                    sh 'docker build --tag=adeelbarki/capstone-clouddevops .'
                 }
             }
         }
