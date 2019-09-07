@@ -30,7 +30,7 @@ pipeline {
         stage('Building image') {
             steps {
                 script {
-                    docker.build registry + ":$BUILD_NUMBER"
+                    sudo docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
@@ -38,8 +38,8 @@ pipeline {
         stage('Deploy Image') {
             steps {
                 script {
-                    docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+                    withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
+                    sh 'docker push adeelbarki/capstone-clouddevops'
                     }
                 }
             }

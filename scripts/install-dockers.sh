@@ -20,7 +20,7 @@ apt-get install \
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Set up the stable repository
-sudo add-apt-repository \
+add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
@@ -33,5 +33,5 @@ apt-get install docker-ce
 
 # Give permission to user
 # sudo usermod -a -G docker $USER
-sudo usermod -a -G docker jenkins
+# sudo usermod -a -G docker jenkins
 
