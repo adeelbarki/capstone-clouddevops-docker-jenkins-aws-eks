@@ -34,5 +34,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy Image') {
+            steps {
+                script {
+                    withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
+                    sh 'docker push adeelbarki/capstone-clouddevops'
+                    }
+                }
+            }
+        }
     }
 }
