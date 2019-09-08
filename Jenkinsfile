@@ -26,5 +26,13 @@ pipeline {
                 git 'https://github.com/adeelbarki/capstone-clouddevops-docker-jenkins-aws-eks.git'
             }
         }
+
+        stage('Building image') {
+            steps {
+                script {
+                    sh 'docker build --tag=adeelbarki/capstone-clouddevops .'
+                }
+            }
+        }
     }
 }
