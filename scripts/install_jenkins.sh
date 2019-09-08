@@ -23,3 +23,6 @@ apt -y install jenkins
 
 # Install Tidy
 apt-get -y install -y tidy
+
+#Jenkin docker permissions
+# sudo usermod -aG docker $USER
