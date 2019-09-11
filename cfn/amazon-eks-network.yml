@@ -183,7 +183,7 @@ Resources:
       GroupDescription: Cluster communication with worker nodes
       VpcId: !Ref VPC
 
-  EKSROle:
+  EKSRole:
     Type: AWS::IAM::Role
     Properties:
       ManagedPolicyArns:
@@ -202,23 +202,20 @@ Resources:
         ]
       }
 
-  # AmazonEKS:
-  #   Type: AWS::EKS::Cluster
-  #   Properties: 
-  #     Name: "nginxxluster"
-  #     VpcId: !Ref VPC
-  #     ResourcesVpcConfig:
-  #       SecurityGroupIds: !Ref ControlPlaneSecurityGroup
-  #       SubnetIds:
-  #       - !Ref Subnet01
-  #       - !Ref Subnet02
-  #       - !Ref Subnet03
-  #     RoleArn: {
-  #       "Fn::GetAtt" : [
-  #         "MyRole", "Arn"
-  #       ]
-  #     }
-  #     Version: 1.10
+  AmazonEKS:
+    Type: AWS::EKS::Cluster
+    Properties: 
+      Name: "nginxcluster"
+      ResourcesVpcConfig:
+        SecurityGroupIds: 
+          - Ref: ControlPlaneSecurityGroup
+        SubnetIds: [!Ref Subnet01, !Ref Subnet02, !Ref Subnet03]
+      RoleArn: {
+        "Fn::GetAtt" : [
+          "EKSRole", "Arn"
+        ]
+      }
+      Version: 1.13
 
 Outputs:
 
