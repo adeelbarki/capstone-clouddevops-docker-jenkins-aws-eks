@@ -2,7 +2,6 @@
 Description: >
   'Adeel Barki / Amazon EKS Script'
   'This template deploys VPC, subnets and security group for EKS cluster'
-
 Parameters:
 
   EnvironmentName:
@@ -32,6 +31,11 @@ Parameters:
   ClusterName:
     Description: EKS cluster name
     Type: String
+
+  BootstrapArguments:
+    Description: Arguments to pass to the bootstrap script. See files/bootstrap.sh in https://github.com/awslabs/amazon-eks-ami
+    Type: String
+    Default: ""
 
   NodeGroupName:
     Description: EKS node group name
@@ -379,14 +383,15 @@ Resources:
             VolumeType: gp2
             DeleteOnTermination: true
       UserData:
-        Fn::Base64: !Sub |
+        Fn::Base64: 
+          !Sub |
             #!/bin/bash
-            apt-get update -y
-            apt-get install unzip awscli -y
-            apt-get install apache2 -y
-            systemctl start apache2.service
-            cd /var/www/html
-            aws s3 cp s3://udacity-jenkins-adeelbarki/index.html .
+            set -o xtrace
+            /etc/eks/bootstrap.sh ${ClusterName} ${BootstrapArguments}
+            /opt/aws/bin/cfn-signal --exit-code $? \
+                     --stack  ${AWS::StackName} \
+                     --resource NodeGroup  \
+                     --region ${AWS::Region}
 
 # --------------------- Outputs ----------------------------------
 
