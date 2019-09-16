@@ -29,7 +29,7 @@
     },
     {
         "ParameterKey": "NodeAutoScalingGroupDesiredCapacity",
-        "ParameterValue": "3"
+        "ParameterValue": "2"
     },
     {
         "ParameterKey": "KeyName",

@@ -5,10 +5,13 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: arn:aws:iam::882685904621:role/demo-NodeInstanceRole-1P6KXKWL5R014
+    - rolearn: arn:aws:iam::882685904621:role/demo-NodeInstanceRole-HAJT6H48DJ15
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
         - system:nodes
 
+# ------------------------------------------Important commands-------------------------
+# aws eks update-kubeconfig --name nginxcluster
 # kubectl apply -f <filename>
+# kubectl delete deploy/webapp-development-blue svc/webapp-service

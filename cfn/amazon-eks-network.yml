@@ -348,7 +348,9 @@ Resources:
       DesiredCapacity: !Ref NodeAutoScalingGroupDesiredCapacity
       LaunchConfigurationName: !Ref NodeLaunchConfig
       MinSize: '1'
-      MaxSize: '4'
+      MaxSize: '3'
+      TargetGroupARNs:
+        - Ref: WebAppTargetGroup
       VPCZoneIdentifier: 
         - Ref: "Subnet01"
         - Ref: "Subnet02"
@@ -392,6 +394,68 @@ Resources:
                      --stack  ${AWS::StackName} \
                      --resource NodeGroup  \
                      --region ${AWS::Region}
+
+  # CodeDeployApplication:
+  #   Type: AWS::CodeDeploy::Application
+  #   Properties:
+  #     ComputePlatform: Server
+
+  # CodeDeployRole:
+  #   Type: AWS::IAM::Role
+  #   Properties:
+  #     ManagedPolicyArns:
+  #     -  "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+  #     AssumeRolePolicyDocument: {
+  #       "Version" : "2012-10-17",
+  #       "Statement": [
+  #         {
+  #           "Effect": "Allow",
+  #           "Principal": {
+  #             "Service": [ "codedeploy.amazonaws.com" ]
+  #           },
+  #           "Action": [ "sts:AssumeRole" ]
+  #         }
+  #       ]
+  #     }
+  
+  # DeploymentGroup: 
+  #   Type: AWS::CodeDeploy::DeploymentGroup
+  #   Properties: 
+  #     ApplicationName: 
+  #       Ref: "CodeDeployApplication"
+  #     DeploymentStyle:
+  #       DeploymentType: BLUE_GREEN
+  #     AutoScalingGroups: 
+  #       - Ref: NodeGroup
+  #     Deployment: 
+  #       Description: "Capstone porject deployment"
+  #       IgnoreApplicationStopFailures: true
+  #         Revision: 
+  #           RevisionType: GitHub
+  #           GitHubLocation: 
+  #             CommitId: 
+  #               Ref: CommitId
+  #             Repository: 
+  #               Ref: Repository
+  #     ServiceRoleArn: !GetAtt CodeDeployRole.Arn
+  #     AutoRollbackConfiguration:
+  #       Enabled: 'true'
+  #       Events:
+  #         - DEPLOYMENT_FAILURE
+
+  WebAppTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 10
+      HealthCheckPath: /
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 8
+      HealthyThresholdCount: 2
+      Port: 80
+      Protocol: HTTP
+      UnhealthyThresholdCount: 5
+      TargetType: instance
+      VpcId: !Ref 'VPC'
 
 # --------------------- Outputs ----------------------------------
 
