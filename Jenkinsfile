@@ -51,6 +51,7 @@ pipeline {
                s3Upload(file: 'Deployment', bucket: 'udacity-jenkins-adeelbarki')
                script {
                    sh 'kubectl version --short --client'
+                   sh 'kubectl apply -f ./cfn/aws-auth-cm.yml'
                }
                 }
             }
