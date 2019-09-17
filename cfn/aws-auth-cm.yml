@@ -10,7 +10,6 @@ data:
       groups:
         - system:bootstrappers
         - system:nodes
-
 # ------------------------------------------Important commands-------------------------
 # aws eks update-kubeconfig --name nginxcluster
 # kubectl apply -f <filename>
