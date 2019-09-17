@@ -50,7 +50,7 @@ pipeline {
                withAWS(region: 'eu-central-1', credentials: 'aws-static') {
                s3Upload(file: 'Deployment', bucket: 'udacity-jenkins-adeelbarki')
                script {
-                   sh 'kubectl get nodes'
+                   sh 'kubectl version --short --client'
                }
                 }
             }
