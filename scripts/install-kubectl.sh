@@ -35,7 +35,7 @@ echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
 sudo apt install python3-pip
 curl -O https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py --user
-export PATH=~/.local/bin:$PATH
+export PATH=~/.local/bin:$PATH (in jenkins user too)
 source ~/.bashrc
 # pip3 --version (check version)
 
