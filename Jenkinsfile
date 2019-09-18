@@ -57,7 +57,7 @@ pipeline {
                    sh 'mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH'
                    sh 'echo "export PATH=$HOME/bin:$PATH" >> ~/.bashrc'
                    sh 'echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc'
-                   sh 'source ~/.bashrc'
+                   sh 'source /var/lib/jenkins/.bashrc'
                 //    sh 'cp chown jenkins /var/lib/jenkins/.kube'
                    sh 'chown jenkins /var/lib/jenkins/.aws/config'
                    sh 'chown jenkins /var/lib/jenkins/.aws/credentials'
