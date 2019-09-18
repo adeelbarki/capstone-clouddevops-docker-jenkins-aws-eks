@@ -10,7 +10,7 @@ apt update
 apt upgrade
 
 # Install packages to allow apt to use a repository over HTTPS:
-apt-get install \
+apt-get -y install \
     apt-transport-https \
     ca-certificates \
     curl \
