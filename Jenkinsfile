@@ -57,6 +57,8 @@ pipeline {
                    sh 'chmod +x ./aws-iam-authenticator'
                    sh 'mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH'
                    sh 'echo export PATH=$HOME/bin:$PATH'
+                   sh 'chown jenkins /var/lib/jenkins/.aws/config'
+                   sh 'chown jenkins /var/lib/jenkins/.aws/credentials'
                    sh 'kubectl apply -f ~/.kube/aws-auth-cm.yml'
                }
                 }
