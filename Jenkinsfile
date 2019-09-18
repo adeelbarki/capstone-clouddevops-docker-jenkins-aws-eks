@@ -59,6 +59,8 @@ pipeline {
                    sh 'echo "export PATH=/var/lib/jenkins/.local/bin:$PATH" >> ~/.bashrc'
                    sh 'pwd'
                 //    sh 'cp chown jenkins /var/lib/jenkins/.kube'
+                   sh 'chown jenkins /var/lib/jenkins/.kube'
+                   sh 'chown jenkins /var/lib/jenkins/.aws'
                    sh 'chown jenkins /var/lib/jenkins/.aws/config'
                    sh 'chown jenkins /var/lib/jenkins/.aws/credentials'
                    sh 'kubectl apply -f /var/lib/jenkins/.kube/aws-auth-cm.yml'
