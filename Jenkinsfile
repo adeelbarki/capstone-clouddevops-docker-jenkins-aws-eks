@@ -54,7 +54,7 @@ pipeline {
                    sh 'curl -o /var/lib/jenkins/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator'
                    sh 'chown jenkins /var/lib/jenkins/aws-iam-authenticator'
                    sh 'chmod +x /var/lib/jenkins/aws-iam-authenticator'
-                   sh 'mkdir -p $HOME/bin && cp /var/lib/jenkins/aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH'
+                   sh 'mkdir -p /var/lib/jenkins/bin && cp /var/lib/jenkins/aws-iam-authenticator /var/lib/jenkins/bin/aws-iam-authenticator && export PATH=/var/lib/jenkins/bin:$PATH'
                    sh 'echo "export PATH=/var/lib/jenkins/bin:$PATH" >> ~/.bashrc'
                 //    sh 'pip3 install awscli --upgrade --user'
                 //    sh 'echo "export PATH=/var/lib/jenkins/.local/bin:$PATH" >> ~/.bashrc'
