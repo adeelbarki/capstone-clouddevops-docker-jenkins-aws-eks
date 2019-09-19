@@ -55,7 +55,10 @@ pipeline {
                    sh 'aws --version'
                    sh 'aws eks update-kubeconfig --name nginxcluster'
                    sh 'kubectl apply -f cfn/aws-auth-cm.yml'
-                   sh 'kubectl apply -f Deployment/'
+                   sh 'kubectl get nodes'
+                   sh 'kubectl get svc'
+                   sh 'kubectl get pods'
+                   sh 'kubectl apply -f Deployment/blue-webapp-deploy.yml'
                 //    sh 'kubectl apply -f /var/lib/jenkins/.kube/aws-auth-cm.yml'
                }
             }
