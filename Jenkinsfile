@@ -59,6 +59,7 @@ pipeline {
                    sh 'kubectl get svc'
                    sh 'kubectl get pods'
                    sh 'kubectl apply -f Deployment/blue-webapp-deploy.yml'
+                   sh 'kubectl apply -f Deployment/green-webapp-deploy.yml'
                 //    sh 'kubectl apply -f /var/lib/jenkins/.kube/aws-auth-cm.yml'
                }
             }
