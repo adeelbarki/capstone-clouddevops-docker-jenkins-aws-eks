@@ -14,16 +14,18 @@
 sudo apt -y install python3-pip
 curl -O https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py --user
-# export PATH=~/.local/bin:$PATH (in jenkins user too)
+# export PATH=~/.local/bin:$PATH
 # source ~/.bashrc
 # Now install aws-cli
-
 pip3 install awscli --upgrade --user
 # check pip3 version
 # pip3 --version
+
 # Move to local bin to get accessed through jenkins user
 sudo cp -r ~/.local/bin/* /usr/local/bin/
 sudo su jenkins
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
 pip3 install awscli --upgrade --user
 
 # Check aws version from jenkins user
