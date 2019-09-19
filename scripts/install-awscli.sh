@@ -13,7 +13,7 @@
 
 sudo apt -y install python3-pip
 curl -O https://bootstrap.pypa.io/get-pip.py
-python3 get-pip.py
+python3 get-pip.py --user
 # export PATH=~/.local/bin:$PATH (in jenkins user too)
 # source ~/.bashrc
 # Now install aws-cli
