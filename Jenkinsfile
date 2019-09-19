@@ -47,22 +47,9 @@ pipeline {
 
         stage ('Upload deployment to AWS') {
             steps {
-               withAWS(region: 'eu-central-1', credentials: 'aws-static') {
-               s3Upload(file: 'Deployment', bucket: 'udacity-jenkins-adeelbarki')
                script {
-                //    sh 'kubectl version --short --client'
-                //    sh 'aws-iam-authenticator help'
-                //    sh 'aws --version'
-                //    sh 'aws eks update-kubeconfig --name nginxcluster'
-                //    sh 'kubectl apply -f cfn/aws-auth-cm.yml'
-                   sh 'kubectl get nodes'
-                   sh 'kubectl get svc'
-                   sh 'kubectl get pods'
-                //    sh 'kubectl apply -f Deployment/blue-webapp-deploy.yml'
-                   sh 'kubectl apply -f Deployment/green-webapp-deploy.yml'
-                //    sh 'kubectl apply -f /var/lib/jenkins/.kube/aws-auth-cm.yml'
+                   sh 'kubectl apply -f Deployment/blue-webapp-deploy.yml'
                }
-            }
             }
         }
     }
