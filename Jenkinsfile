@@ -48,7 +48,7 @@ pipeline {
         stage ('Upload deployment to AWS') {
             steps {
                script {
-                   sh 'kubectl apply -f Deployment/blue-webapp-deploy.yml'
+                   sh 'kubectl apply -f Deployment/green-webapp-deploy.yml'
                }
             }
         }
