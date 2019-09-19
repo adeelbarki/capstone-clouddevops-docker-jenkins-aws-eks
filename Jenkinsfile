@@ -57,7 +57,7 @@ pipeline {
         stage ('Add latest blue deployment to AWS Loadbalancer') {
             steps {
                script {
-                   sh 'kubectl delete deploy/web-deployment-blue'
+                   sh 'kubectl apply -f Deployment/blue-webapp-deploy.yml'
                }
             }
         }
