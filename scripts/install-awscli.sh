@@ -22,7 +22,7 @@ pip3 install awscli --upgrade --user
 # check pip3 version
 # pip3 --version
 # Move to local bin to get accessed through jenkins user
-sudo sudo cp -r ~/.local/bin/* /usr/local/bin/
+sudo cp -r ~/.local/bin/* /usr/local/bin/
 sudo su jenkins
 pip3 install awscli --upgrade --user
 
