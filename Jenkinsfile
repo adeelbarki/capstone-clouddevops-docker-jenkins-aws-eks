@@ -12,14 +12,6 @@ pipeline {
                 sh 'tidy -q -e *.html'
             }
         }
-        
-        stage ('Upload to AWS') {
-            steps {
-               withAWS(region: 'eu-central-1', credentials: 'aws-static') {
-               s3Upload(file: 'index.html', bucket: 'udacity-jenkins-adeelbarki')
-                }
-            }
-        }
 
         stage ('Cloning Git') {
             steps {
@@ -45,10 +37,35 @@ pipeline {
             }
         }
 
-        stage ('Upload deployment to AWS') {
+        stage ('Upload latest green deployment to AWS Loadbalancer') {
             steps {
                script {
-                   sh 'kubectl apply -f Deployment/blue-webapp-deploy.yml'
+                   // Latest
+                   sh 'kubectl apply -f Deployment/green-webapp-deploy.yml'
+               }
+            }
+        }
+
+        stage ('Remove old blue deployment from AWS Loadbalancer') {
+            steps {
+               script {
+                   sh 'kubectl delete deploy/web-deployment-blue'
+               }
+            }
+        }
+
+        stage ('Add latest blue deployment to AWS Loadbalancer') {
+            steps {
+               script {
+                   sh 'kubectl delete deploy/web-deployment-blue'
+               }
+            }
+        }
+
+        stage ('Remove old green deployment from AWS Loadbalancer') {
+            steps {
+               script {
+                   sh 'kubectl delete deploy/web-deployment-green'
                }
             }
         }
