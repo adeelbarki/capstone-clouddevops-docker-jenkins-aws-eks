@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: capstone-clouddevops
-        image: adeelbarki/capstone-clouddevops
+        image: adeelbarki/capstone-clouddevops:latest
         ports:
         - containerPort: 80
 ---
