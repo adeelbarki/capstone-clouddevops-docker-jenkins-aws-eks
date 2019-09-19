@@ -51,8 +51,7 @@ pipeline {
                s3Upload(file: 'Deployment', bucket: 'udacity-jenkins-adeelbarki')
                script {
                    sh 'kubectl version --short --client'
-                   sh 'pwd'
-                   sh 'ls /var/lib/jenkins/ -la'
+                   sh 'aws-iam-authenticator help'
                 //    sh 'curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator'
                 //    sh 'aws-iam-authenticator help'
                 //    sh 'aws --version'
@@ -64,7 +63,7 @@ pipeline {
                 //    sh 'chown jenkins /var/lib/jenkins/.aws/credentials'
                 //    sh 'kubectl apply -f /var/lib/jenkins/.kube/aws-auth-cm.yml'
                }
-                }
+            }
             }
         }
     }
