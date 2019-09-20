@@ -10,9 +10,7 @@ pipeline {
         stage ('Lint HTML') {
             steps {
                 sh 'tidy -q -e *.html'
-                sh 'python3 -m venv .devops'
-                sh './.devops/bin/activate'
-                sh 'pip install --upgrade pip && pip install -r requirements.txt'
+                sh './scripts/python-environment.sh'
                 sh 'pylint --disable=R,C,W1203 app.py'
             }
         }
