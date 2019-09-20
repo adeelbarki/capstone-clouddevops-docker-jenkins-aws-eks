@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh 'tidy -q -e *.html'
                 sh 'chmod +x scripts/python-environment.sh'
-                sh './scripts/python-environment.sh'
+                sh 'apt list --installed'
                 sh 'pylint --disable=R,C,W1203 app.py'
             }
         }
