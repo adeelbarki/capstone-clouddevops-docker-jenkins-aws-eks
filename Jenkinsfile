@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh 'tidy -q -e *.html'
                 sh 'python3 -m venv .devops'
-                sh 'source .devops/bin/activate'
+                sh './.devops/bin/activate'
                 sh 'pip install --upgrade pip && pip install -r requirements.txt'
                 sh 'pylint --disable=R,C,W1203 app.py'
             }
