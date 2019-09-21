@@ -29,6 +29,10 @@ curl -O https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py --user
 pip3 install awscli --upgrade --user
 
+# Install pylint and flask
+pip3 install pylint --user
+pip3 install flask --user
+
 # Check aws version from jenkins user
 # sudo su jenkins 
 # aws --version
