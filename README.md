@@ -26,9 +26,9 @@ The project is divided in three main parts:
 
 * Blue deployment is configured by default on three kubernetes pods
 
-* After the new commit, code is pused to docker hub 
+* After the new commit, code is passed to docker hub 
 
-* Code is pulled from docker registry and temperory green deployment is initated.
+* Code is pulled from docker registry and to a temperory green deployment; initiated on runtime.
 
 * Green deployment creates three new pods in the pipeline. Total of 6 pods now in pipeline
 
@@ -36,9 +36,11 @@ The project is divided in three main parts:
 
 * In the mean time temperory green deployment is attached to load balancer showing updated website
 
-* New deployment is created with the name of Blue and latest code is exposed on three new pods. 
+* New deployment is created with the name of Blue with the new updates. 
 
 * Temperory green deployment deleted to complete the circle and we are back on blue deployment with the updated website
+    _Notes_
+        * Project is configured as blue / green deployment in kubernetes pods where all the pods are connected to a single load balancer and service.
 
 
 ## Resources 
