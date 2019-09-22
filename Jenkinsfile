@@ -42,8 +42,7 @@ pipeline {
             steps {
                script {
                    // Latest
-                   sh 'cd cfn'
-                   sh 'aws cloudformation create-stack --stack-name green-node-gp2 --region us-west-2 --template-body file://amazon-eks-nodes.yml --parameters file://green-nodegroup-param.json --capabilities CAPABILITY_IAM'
+                   sh 'aws cloudformation create-stack --stack-name green-node-gp2 --region us-west-2 --template-body cfn/amazon-eks-nodes.yml --parameters cfn/green-nodegroup-param.json --capabilities CAPABILITY_IAM'
                }
             }
         }
