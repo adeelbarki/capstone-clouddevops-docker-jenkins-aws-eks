@@ -1,0 +1,26 @@
+[
+    {
+        "ParameterKey": "EnvironmentName",
+        "ParameterValue": "Capston-pipepline-project"
+    },
+    {
+        "ParameterKey": "ClusterName",
+        "ParameterValue": "nginxcluster"
+    },
+    {
+        "ParameterKey": "NodeGroupName",
+        "ParameterValue": "nodegp1"
+    },
+    {
+        "ParameterKey": "NodeAutoScalingGroupDesiredCapacity",
+        "ParameterValue": "2"
+    },
+    {
+        "ParameterKey": "KeyName",
+        "ParameterValue": "eks-node-KP-us-west-2"
+    },
+    {
+        "ParameterKey": "Deployment",
+        "ParameterValue": "Green"
+    }
+]

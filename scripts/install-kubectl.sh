@@ -1,4 +1,7 @@
 # Install kubectl
+
+sudo apt update
+sudo apt upgrade
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl\
     -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 chmod +x ./kubectl
@@ -29,7 +32,7 @@ echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
 # python3 --version 
 # pip3 --version 
 # If not installed the install it. 
-# sudo apt install python3-pip
+sudo apt install python3-pip
 curl -O https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py --user
 export PATH=~/.local/bin:$PATH
@@ -45,7 +48,7 @@ pip3 install awscli --upgrade --user
 
 # aws configure (Update aws credentials - IAM user programmetic acces - Amazonadmin access) 
 # Update kube-config file
-aws eks --region eu-central-1 update-kubeconfig --name nginxcluster
+aws eks update-kubeconfig --name nginxcluster
 
 
 

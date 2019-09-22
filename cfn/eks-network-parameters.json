@@ -22,17 +22,5 @@
     {
         "ParameterKey": "ClusterName",
         "ParameterValue": "nginxcluster"
-    },
-    {
-        "ParameterKey": "NodeGroupName",
-        "ParameterValue": "nodegp1"
-    },
-    {
-        "ParameterKey": "NodeAutoScalingGroupDesiredCapacity",
-        "ParameterValue": "3"
-    },
-    {
-        "ParameterKey": "KeyName",
-        "ParameterValue": "eks-node-KP-eu-central-1"
     }
 ]

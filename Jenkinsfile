@@ -10,14 +10,7 @@ pipeline {
         stage ('Lint HTML') {
             steps {
                 sh 'tidy -q -e *.html'
-            }
-        }
-        
-        stage ('Upload to AWS') {
-            steps {
-               withAWS(region: 'eu-central-1', credentials: 'aws-static') {
-               s3Upload(file: 'index.html', bucket: 'udacity-jenkins-adeelbarki')
-                }
+                sh 'pylint --disable=R,C,W1203 app.py'
             }
         }
 
@@ -44,5 +37,38 @@ pipeline {
                 }
             }
         }
+
+        stage ('Upload latest green deployment to AWS Loadbalancer') {
+            steps {
+               script {
+                   // Latest
+                   sh 'aws cloudformation create-stack --stack-name green-node-gp2 --region us-west-2 --template-body file://amazon-eks-nodes.yml --parameters file://green-nodegroup-param.json --capabilities CAPABILITY_IAM'
+               }
+            }
+        }
+
+        // stage ('Remove old blue deployment from AWS Loadbalancer') {
+        //     steps {
+        //        script {
+        //            sh 'kubectl delete deploy/web-deployment-blue'
+        //        }
+        //     }
+        // }
+
+        // stage ('Add latest blue deployment to AWS Loadbalancer') {
+        //     steps {
+        //        script {
+        //            sh 'kubectl apply -f Deployment/blue-webapp-deploy.yml'
+        //        }
+        //     }
+        // }
+
+        // stage ('Remove old green deployment from AWS Loadbalancer') {
+        //     steps {
+        //        script {
+        //            sh 'kubectl delete deploy/web-deployment-green'
+        //        }
+        //     }
+        // }
     }
 }
