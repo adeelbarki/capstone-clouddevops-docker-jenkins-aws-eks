@@ -1,8 +1,5 @@
 # Project: Continuous Integration & Deployment using Cloudformation, Jenkins, Docker & Kubernetes (EKS)
 
-## DNS link
-http://ab3df1d9adc3211e9808c0a091aa6361-75135660.eu-central-1.elb.amazonaws.com/
-
 ## Description
 
 In this project continuous pipeline is created in order to demonstarte deployment & production stages.
